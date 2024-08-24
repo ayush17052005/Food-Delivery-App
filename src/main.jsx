@@ -9,7 +9,10 @@ import StoreContextProvider from './context/StoreContext.jsx'
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <StoreContextProvider>
-    <App />
+      <div className=''>
+
+       <App />
+      </div>
     </StoreContextProvider>
   </BrowserRouter>
    

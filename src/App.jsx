@@ -9,7 +9,7 @@ import Footer from './components/Footer/Footer'
 const App = () => {
   return (
     <>
-    <div className='app mx-28 font-outfit'>
+    <div className='app mx-28 font-outfit overflow-hidden'>
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />}/>
