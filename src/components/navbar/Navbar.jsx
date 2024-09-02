@@ -3,7 +3,7 @@ import {useState} from 'react'
 
 import {assets } from '../../assets/assets'
 
-const Navbar = () => {
+const Navbar = ({setLogin}) => {
   const [menu, setMenu] = useState('home');
   return (
     <div  className="navbar flex justify-between items-center py-3">
@@ -31,7 +31,7 @@ const Navbar = () => {
           <div className="dot absolute min-w-[9px] h-[9px] bg-red-500 rounded-full top-[-8px] right-[-8px]"></div>
         </div>
 
-        <button className="w-20 h-9 md:h-14 md:w-32  bg-transparent md:text-lg text-[#49557e] border-2 border-black px-2  rounded-full cursor-pointer transition duration-300 hover:bg-[#ededed]">Sign In</button>
+        <button onClick={()=>setLogin(true)} className="w-20 h-9 md:h-14 md:w-32  bg-transparent md:text-lg text-[#49557e] border-2 border-black px-2  rounded-full cursor-pointer transition duration-300 hover:bg-[#ededed]">Sign In</button>
 
       </div>
 
