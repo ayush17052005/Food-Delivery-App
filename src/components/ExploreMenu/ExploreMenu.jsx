@@ -27,14 +27,14 @@ const ExploreMenu = ({ category, setCategory }) => {
       <h1 className="text-4xl font-bold text-center md:text-start text-black my-4">
         Explore our Menu
       </h1>
-      <p className="md:max-w-[60%] text-gray-600 text-xl leading-relaxed mb-6">
+      <p className="md:max-w-[98%] text-gray-600 text-xl leading-relaxed mb-6">
         Choose from a diverse menu featuring a delectable array of dishes
         crafted with the finest ingredients and culinary expertise. Our mission
         is to satisfy your cravings and elevate your dining experience, one
         delicious meal at a time.
       </p>
 
-      <div className="flex justify-between items-center gap-5 md:gap-10 text-center my-5 overflow-x-scroll no-scrollbar">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 my-5">
         {custom_menu_list.map((item, index) => {
           return (
             <div
@@ -44,15 +44,15 @@ const ExploreMenu = ({ category, setCategory }) => {
                 )
               }
               key={index}
-              className=" w-48 flex flex-col justify-center text-center "
+              className="flex flex-col justify-center text-center"
             >
               <img
                 src={item.menu_image}
                 alt=""
                 className={
                   category === item.menu_name
-                    ? "border-4 border-solid border-red-400 p-1 w-48 h-48 object-cover cursor-pointer rounded-full animate-clicked"
-                    : "w-48 h-48 object-cover cursor-pointer rounded-full"
+                    ? "border-4 border-solid border-red-400 p-1 w-full h-48 object-cover cursor-pointer rounded-full animate-clicked"
+                    : "w-full h-48 object-cover cursor-pointer rounded-full"
                 }
               />
               <p className="mt-3 text-slate-900 text-lg cursor-pointer">

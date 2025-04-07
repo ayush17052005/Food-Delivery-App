@@ -77,7 +77,7 @@ const FoodDisplay = ({cat}) => {
   return (
     <div className=''>
       <h2 className='text-2xl font-semibold'>Top dishes near you</h2>
-      <div className="md:grid md:grid-cols-4 mt-8 gap-8 gap-y-12">
+      <div className="grid  md:grid-cols-3 lg:grid-cols-4 mt-8 gap-8 gap-y-12">
         {filteredItems.map((item, index) => (
           <FoodItem
             key={index}

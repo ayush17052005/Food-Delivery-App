@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 import {assets } from '../../assets/assets'
 import LoginPopup from '../LoginPopup/LoginPopup'
@@ -8,6 +8,12 @@ const Navbar = () => {
   const {user} = useAuth();
   const [active, setActive] = useState('home');
   const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const navigate = useNavigate();
+
+  const goHome = () => {
+    navigate('/');
+    setActive('home');
+  }
 
   const handleAuth = () => {
     setShowLoginPopup(true);
@@ -45,7 +51,9 @@ const Navbar = () => {
     <>
       <div className="navbar flex justify-between items-center py-3 overflow-x-clip">
         <div className="navbar flex justify-between items-center scale-75 md:scale-100 py-2">
-          <img className='logo' src={assets.logo} alt="logo" />
+          <button onClick={goHome} className="flex items-center gap-2">
+          <img  className='logo' src={assets.logo} alt="logo" />
+          </button>
         </div>
         
         <div className="hidden lg:block">
@@ -64,12 +72,12 @@ const Navbar = () => {
           </div>
           
           <div className="navbar-search-icon">
-            <img src={assets.basket_icon} alt="" />
+            <img className="w-10 h-10 opacity-75" src="https://www.freeiconspng.com/uploads/red-shopping-basket-icon-29.jpg" alt="" />
             <div className="dot absolute min-w-[9px] h-[9px] bg-red-500 rounded-full top-[-8px] right-[-8px]"></div>
           </div>
 
           {user ? (
-          <Link to="/account">Profile</Link>
+          <Link to="/account"><img className="w-10 h-10 opacity-75"src="https://png.pngtree.com/png-vector/20220813/ourmid/pngtree-user-flat-red-color-rounded-vector-icon-flat-personal-isolated-vector-png-image_19495794.png" alt="" /></Link>
         ) : (
           <button className=" border-gray-500 border-2 px-3 py-2 rounded-full p-5" onClick={handleAuth}>Sign In </button>
         )}

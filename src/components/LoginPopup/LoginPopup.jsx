@@ -3,7 +3,7 @@ import { assets } from '../../assets/assets'
 import { signup, signin } from  '../../services/auth'
 
 const LoginPopup = ({setShowLoginPopup}) => {
-  const [isLogin,setIsLogin]=useState(false)
+  const [isLogin,setIsLogin]=useState(true)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
