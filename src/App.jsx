@@ -3,21 +3,34 @@ import Navbar from './components/navbar/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Cart from './pages/Cart/Cart'
-import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
+import OrdersPage from './pages/Order/Order'
+import AccountPage from './pages/Account/Account'
 import Footer from './components/Footer/Footer'
 import LoginPopup from './components/LoginPopup/LoginPopup'
+import { useAuth } from './context/AuthContext'
+import { Navigate } from 'react-router-dom'
+
+
+const PrivateRoute = ({ children }) => {
+  const { user } = useAuth();
+
+  if (!user) return <Navigate to="/" />;
+
+  return children;
+};
 
 const App = () => {
-  const [login, setLogin] = useState(false);
+  
   return (
     <>
-      {login ? <LoginPopup setLogin={setLogin} />:<></>}
+      
       <div className='app mx-6 md:mx-28 font-outfit'>
-        <Navbar setLogin={setLogin} />
+        <Navbar  />
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/cart" element={<Cart/>}/>
-          <Route path="/PlaceOrder" element={<PlaceOrder/>}/>
+          <Route path="/account" element={<PrivateRoute><AccountPage /></PrivateRoute>} />
+          <Route path="/orders" element={<PrivateRoute><OrdersPage /></PrivateRoute>} />
         </Routes>
       </div>
       <Footer/>
