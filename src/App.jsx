@@ -12,15 +12,15 @@ const App = () => {
   return (
     <>
       {login ? <LoginPopup setLogin={setLogin} />:<></>}
-    <div className='app mx-6 md:mx-28 font-outfit overflow-x-clip'>
+      <div className='app mx-6 md:mx-28 font-outfit'>
         <Navbar setLogin={setLogin} />
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/cart" element={<Cart/>}/>
-        <Route path="/PlaceOrder" element={<PlaceOrder/>}/>
-      </Routes>
-    </div>
-    <Footer/>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/PlaceOrder" element={<PlaceOrder/>}/>
+        </Routes>
+      </div>
+      <Footer/>
     </>
   )
 }

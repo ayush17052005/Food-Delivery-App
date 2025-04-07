@@ -3,7 +3,7 @@ import { assets } from '../../assets/assets'
 
 const Footer = () => {
   return (
-    <div>
+    <div id="contact-us">
       <div className="text-[#d9d9d9] bg-[#323232] overflow-hidden flex flex-col items-center gap-8 py-5 px-[8vw] pt-[80px] mt-10">
 
       <div className="w-[100%] flex flex-col lg:flex-row justify-between gap-[80px]">

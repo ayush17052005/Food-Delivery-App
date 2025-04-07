@@ -3,7 +3,7 @@ import React from 'react'
 const Header = () => {
   return (
 
-    <div className="header h-[40vw] mb-5 mx-auto bg-[url('/header_img.png')] bg-center bg-cover relative bg-no-repeat flex justify-center rounded-3xl">
+    <div  className=" h-[40vw] mb-5 mx-auto bg-[url('/header_img.png')] bg-center bg-cover relative bg-no-repeat flex justify-center rounded-3xl" id="home">
 
       <div className="header-content absolute flex flex-col items-start gap-[1.5vw] md:max-w-[50%]  bottom-[10%] left-[4vw] animate-fadeIn">
         <h2 className=' text-4xl md:text-7xl text-white '>Order your<br></br>

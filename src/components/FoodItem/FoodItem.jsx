@@ -3,14 +3,14 @@ import {useContext} from 'react'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 
-const FoodItem = ({ key, id, name, price, des, image }) => {
+const FoodItem = ({  id, name, price, des, image }) => {
   
   const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
 
 
   return (
 
-    <div className='rounded-t-2xl rounded-b-lg animate-fadeIn1 shadow-md shadow-zinc-300 m-5 md:mx-2' key={id}>
+    <div className='rounded-t-2xl rounded-b-lg animate-fadeIn1 shadow-md shadow-zinc-300 m-5 md:mx-2 ' key={id}>
 
       <div className='relative' >
         
@@ -29,12 +29,12 @@ const FoodItem = ({ key, id, name, price, des, image }) => {
 
       <div className="p-5">
 
-        <div className="flex justify-between items-center mb-3">
-          <p className='font-semibold text-xl'>{name}</p>
+        <div className="flex justify-between items-center mb-3 flex-col">
+          <p className='font-semibold text-xl md:text-base'>{name}</p>
           <img className="w-20"src={assets.rating_starts} alt="" />
         </div>
 
-        <p className='text-zinc-600 text-md'>{des}</p>
+        <p className='text-zinc-600 text-md md:truncate'>{des}</p>
         <p className='text-red-500 text-2xl font-semibold mt-3'> ₹{price}</p>
       </div>
 

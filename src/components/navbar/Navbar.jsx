@@ -4,19 +4,48 @@ import {useState} from 'react'
 import {assets } from '../../assets/assets'
 
 const Navbar = ({setLogin}) => {
-  const [menu, setMenu] = useState('home');
+  const [active , setActive] = useState('home');
+
+  const handleScroll = () => {
+    const sections = ['home', 'menu', 'mobile-app', 'contact-us'];
+    const scrollPosition = window.scrollY;
+
+    sections.forEach(sectionId => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const { offsetTop, offsetHeight } = element;
+        if (scrollPosition >= offsetTop - 100 && scrollPosition < offsetTop + offsetHeight) {
+          setActive(sectionId);
+        }
+      }
+    });
+  };
+
+  const scrollToSection = (sectionId) => {
+    setActive(sectionId);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div  className="navbar flex justify-between items-center py-3">
+    <div  className="navbar flex justify-between items-center py-3 overflow-x-clip">
       <div className="navbar flex justify-between items-center scale-75 md:scale-100 py-2">
         <img className='logo' src={assets.logo} alt="logo" />
       </div>
       
       <div className="hidden lg:block">
-      <ul className="navbar-menu flex md:gap-12 text-[#49557e] list-none texNamet-lg ">
-        <li onClick={()=>setMenu("home")} className={menu=="home"?'border-b-2 border-red-500 cursor-pointer' :" cursor-pointer"}>Home</li>
-        <li onClick={()=>setMenu("menu")}className={menu=="menu"?'border-b-2 border-red-500 cursor-pointer' :" cursor-pointer"}>Menu</li>
-        <li onClick={()=>setMenu("mobile-app")}className={menu=="mobile-app"?'border-b-2 border-red-500 cursor-pointer' :" cursor-pointer"}>Mobile App</li>
-        <li onClick={() => setMenu("contact-us")} className={menu == "contact-us" ? 'border-b-2 border-red-500 cursor-pointer' : " cursor-pointer"}>Contact Us</li>
+        <ul className="navbar-menu flex md:gap-12 text-[#49557e] list-none texNamet-lg ">
+          <li onClick={()=>scrollToSection("home")} className={active =="home"?'border-b-2 border-red-500 cursor-pointer' :" cursor-pointer"}>Home</li>
+          <li onClick={()=>scrollToSection("menu")} className={active =="menu"?'border-b-2 border-red-500 cursor-pointer' :" cursor-pointer"}>Menu</li>
+          <li onClick={()=>scrollToSection("mobile-app")} className={active =="mobile-app"?'border-b-2 border-red-500 cursor-pointer' :" cursor-pointer"}>Mobile App</li>
+          <li onClick={()=>scrollToSection("contact-us")} className={active =="contact-us"?'border-b-2 border-red-500 cursor-pointer' :" cursor-pointer"}>Contact Us</li>
         </ul>
       </div>
 

@@ -4,8 +4,8 @@ import { assets } from '../../assets/assets'
 const LoginPopup = ({setLogin}) => {
   const [currState,setCurrState]=useState("Sign Up")
   return (
-    <div className='absolute z-10 w-[100%] h-[100%] bg-slate-800 grid bg-opacity-75'>
-      <form className="place-self-center max-w-96  bg-white text-gray-800 flex flex-col gap-6 py-5 px-7 rounded-xl text-base" >
+    <div className='fixed inset-0 z-10 flex items-center justify-center bg-slate-800 bg-opacity-75'>
+      <form className="max-w-96 bg-white text-gray-800 flex flex-col gap-6 py-5 px-7 rounded-xl text-base" >
         <div className="flex justify-between items-center ">
           <h2 className='text-2xl font-semibold'>{currState}</h2>
           <img className='cursor-pointer w-4 ' onClick={()=>setLogin(false)} src={assets.cross_icon} alt="" />
