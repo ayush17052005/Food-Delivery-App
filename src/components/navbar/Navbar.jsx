@@ -36,9 +36,13 @@ const Navbar = () => {
 
   const scrollToSection = (sectionId) => {
     setActive(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (window.location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: sectionId } });
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -46,6 +50,23 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+
+  useEffect(() => {
+    const { state } = window.location;
+    if (state && state.scrollTo) {
+      const element = document.getElementById(state.scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setActive(state.scrollTo);
+      }
+      // Clear the state
+      window.history.replaceState({}, document.title);
+    }
+  }, []);
+
+  
 
   return (
     <>
