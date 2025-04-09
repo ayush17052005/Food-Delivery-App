@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../services/auth';
 
 const Account = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('profile');
 
@@ -150,7 +151,7 @@ const Account = () => {
               </div>
               <button
                 onClick={handleLogout}
-                className="w-full md:w-auto px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                className="w-full bg-red-500 text-white py-3 rounded-lg hover:bg-red-600 transition-colors"
               >
                 Logout
               </button>

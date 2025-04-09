@@ -98,10 +98,14 @@ const Navbar = () => {
           </div>
 
           {user ? (
-          <Link to="/account"><img className="w-10 h-10 opacity-75"src="https://png.pngtree.com/png-vector/20220813/ourmid/pngtree-user-flat-red-color-rounded-vector-icon-flat-personal-isolated-vector-png-image_19495794.png" alt="" /></Link>
-        ) : (
-          <button className=" border-gray-500 border-2 px-3 py-2 rounded-full p-5" onClick={handleAuth}>Sign In </button>
-        )}
+            <Link to="/account">
+              <img className="w-10 h-10 opacity-75" src="https://png.pngtree.com/png-vector/20220813/ourmid/pngtree-user-flat-red-color-rounded-vector-icon-flat-personal-isolated-vector-png-image_19495794.png" alt="" />
+            </Link>
+          ) : (
+            <button className="border-gray-500 border-2 px-3 py-2 rounded-full p-5" onClick={handleAuth}>
+              Sign In
+            </button>
+          )}
         </div>
       </div>
 

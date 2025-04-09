@@ -1,28 +1,35 @@
 import React, { useState } from 'react'
 import { assets } from '../../assets/assets'
-import { signup, signin } from  '../../services/auth'
+import { signup, signin } from '../../services/auth'
+import { useAuth } from '../../context/AuthContext'
 
 const LoginPopup = ({setShowLoginPopup}) => {
-  const [isLogin,setIsLogin]=useState(true)
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [isLogin, setIsLogin] = useState(true)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const { setUser } = useAuth()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    setError("")
+    
     try {
+      let response
       if (isLogin) {
-        await signin(email, password);
+        response = await signin(email, password)
       } else {
-        await signup(email, password);
+        response = await signup(email, password)
       }
-      setShowLoginPopup(false); // Close popup after successful auth
-      setEmail(""); // Clear the form
-      setPassword("");
+      setUser(response.user)
+      setShowLoginPopup(false)
+      setEmail("")
+      setPassword("")
     } catch (err) {
-      setError(err.message);
+      setError(err.message)
+      console.error("Auth error:", err)
     }
-  };
+  }
 
   return (
     <div className='fixed inset-0 z-10 flex items-center justify-center bg-slate-800 bg-opacity-75'>
@@ -41,6 +48,8 @@ const LoginPopup = ({setShowLoginPopup}) => {
           <p>By continuing, I agree to the terms of use & privacy policy</p>
         </div>
         <button type="submit" className='bg-red-500 py-2 rounded-lg text-white'>{!isLogin ? "Create Account" : "Login"}</button>
+        
+        {error && <p className="text-red-500 text-sm">{error}</p>}
         
         {isLogin ? <p>Create a new account ? <span className='bg-blue-500 text-white px-3 py-2 rounded-md text-sm cursor-pointer' onClick={()=>setIsLogin(false)}>Click here</span></p> : <p>Already have an account ? <span className='bg-blue-500 text-white px-3 py-2 rounded-md text-sm cursor-pointer' onClick={()=>setIsLogin("True")}>Login here</span></p>}
       </form>
